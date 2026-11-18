@@ -160,7 +160,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: process.env.NODE_ENV === "production"
     ? process.env.FRONTEND_URL
-    : "http://localhost:3000",
+    : `${process.env.HOST}:3000`,
   credentials: true,
 }));
 
@@ -177,7 +177,7 @@ const swaggerDocs = swaggerJsDoc({
       description: "REST API for car service packages and appointments.",
     },
     servers: [{
-      url: `http://localhost:${process.env.PORT || 5000}`,
+      url: `${process.env.HOST}:${process.env.PORT || 5000}`,
     }],
     components: {
       securitySchemes: {
@@ -230,7 +230,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
-  console.log(`Car Service Appointment API running on http://localhost:${PORT}`);
+  console.log(`Car Service Appointment API running on ${process.env.HOST}:${PORT}`);
 });
 
 process.on("unhandledRejection", (error) => {
