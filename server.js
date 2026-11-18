@@ -243,4 +243,6 @@ process.on("uncaughtException", (error) => {
   process.exit(1);
 });
 
-module.exports = { app, server };
+module.exports = app;
+module.exports.app = app;
+module.exports.server = server;
